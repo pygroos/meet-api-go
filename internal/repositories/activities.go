@@ -7,7 +7,7 @@ import (
 
 const (
 	ACTIVITY_NORMAL = 1
-	ACTIVITY_END = 2
+	ACTIVITY_END    = 2
 	ACTIVITY_CANCEL = 3
 )
 
@@ -15,7 +15,7 @@ func GetListByConditions(city string, week int) ([]Activities, int) {
 	var list []Activities
 	var total int
 
-	tx := DbHandle.Where(Activities{ActivityStatus: ACTIVITY_NORMAL})
+	tx := DbHandle
 	if city != "" {
 		tx = tx.Where("city = (?)", []string{city})
 	}
