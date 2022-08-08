@@ -9,6 +9,7 @@ func InitRouter() *gin.Engine {
 	r := gin.New()
 	var user api.UserController
 	var meet api.MeetController
+	var location api.LocationController
 	apiV1 := r.Group("/api/v1")
 	{
 		// 登录
@@ -19,6 +20,8 @@ func InitRouter() *gin.Engine {
 		apiV1.GET("meet/list", meet.List)
 		// 遇见详情
 		apiV1.GET("meet/info", meet.Info)
+		// 位置打点
+		apiV1.POST("location/dot", location.Dot)
 	}
 
 	return r
