@@ -2,8 +2,8 @@ package support
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"meet-api/internal/code"
+	"net/http"
 )
 
 type Gin struct {
@@ -25,11 +25,11 @@ func (g *Gin) Ok(data interface{}) {
 	return
 }
 
-func (g *Gin) Fail(errCode int, data interface{}) {
+func (g *Gin) Fail(errCode int) {
 	g.C.JSON(http.StatusOK, Response{
 		Code: errCode,
 		Msg:  code.GetMsg(errCode),
-		Data: data,
+		Data: "",
 	})
 	return
 }
