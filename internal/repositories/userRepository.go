@@ -8,17 +8,15 @@ import (
 type UserRepository struct {
 }
 
-func (u *UserRepository) CreateUser(userInfo map[string]string) bool {
-	tx := DbHandle
-	tx.Create(userInfo)
+func (u *UserRepository) CreateUser(userInfo model.Users) bool {
+	if err := DbHandle.Create(&userInfo).Error; err != nil {
+		return false
+	}
 	return true
 }
 
 func (u *UserRepository) GetUserInfoByUserId(userId int) model.Users {
 	var m = model.Users{}
-	tx := DbHandle
-	tx.Where("user_id=(?)", []int{userId})
-	tx.Find(&m)
-
+	DbHandle.Where("user_id=(?)", []int{userId}).Find(&m)
 	return m
 }
